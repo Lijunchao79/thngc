@@ -1,0 +1,9 @@
+!**/src/main/**
+!**/src/test/**
+.metadata/
+RemoteSystemsTempFiles/
+
+### Java class files ###
+*.class
+
+
