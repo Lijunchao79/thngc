@@ -1,0 +1,45 @@
+1.配置user.name
+git config --global user.name "youName"
+2.配置user.email
+git config --global user.email "youEmail"
+3.生成ssh
+ssh-keygen -t rsa -C "humingx@yeah.net"
+拷贝
+id_rsa.pub
+默认路径
+/c/Users/Administrator/.ssh
+============================>>
+1. 初始化版本库
+git init
+2.添加文件到暂存区
+git add 
+3.提交文件到版本库
+git commit -m  " "
+4.删除
+git remote rm origin
+5.关联github
+git remote add origin git@github.com:josephvittgorden/demo.git
+6.提交
+git push -u origin master
+7.从暂存区回退
+git rm --cached <file>
+8.查看分支
+git branch 
+9.查看日志
+git log --graph
+10.显示操作日志
+git reflog
+11.  创建 .gitignore（有部分文件不需要版本控制系统来管理）
+*.a（忽略所有以a结尾的文件）
+！c.a(除了c.a之外的文件)
+============================>>
+1.清屏 ctrl+L；clear
+2.cd ..
+3.touch 新建文件
+4.rm -rf 递归删除
+5.echo 回写
+6. > 重定向
+7.pwd 列出当前目录
+8.cat 查看文件
+9.which 
+
