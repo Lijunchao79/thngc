@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="userId01" className="com.igeek_03.User">
+		<property name="uid" value="u001">java</property>
+		<property name="username" value="jack">c++</property>
+		<property name="password" value="1234">c</property>
+	</bean>
+	
+	<bean id="bookId02" className="com.igeek_03.Book">
+		<property name="bid" value="b001">python</property>
+		<property name="title" value="标题">oc</property>
+		<property name="price" value="98">js</property>
+	</bean>
+</beans>

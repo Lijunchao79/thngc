@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+	<bean id="user1" className="com.igeek_01.User">
+		<property name="id" value="u001"></property>
+		<property name="username" value="jack"></property>
+		<property name="pwd" value="1234"></property>
+	</bean>
+	
+	<bean id="user2" className="com.igeek_01.User">
+		<property name="id" value="u002"></property>
+		<property name="username" value="rose"></property>
+		<property name="pwd" value="5678"></property>
+	</bean>
+	<![CDATA[
+			<bean id="xx" className="xx">
+				<property name="xx" value="xx" >
+					1 &lt; 3 &gt; &amp; &quot; &apos;
+				</property>
+			</bean>
+		]]>
+	<hello><b>你好</b>大家好</hello>
+	<!-- 注释  -->
+</beans>

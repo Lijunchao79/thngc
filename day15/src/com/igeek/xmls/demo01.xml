@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+	<person id="p001" class="zs">
+		<name>张三</name>
+	</person>
+	<person id="p002">
+		<name>李四</name>
+	</person>
+</persons>

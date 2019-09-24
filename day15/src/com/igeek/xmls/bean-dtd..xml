@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans SYSTEM "bean.dtd">
+<beans>
+	<bean id="b001" className="">
+		<property name="" value="">12</property>
+		<property name="" value="">zxc</property>
+		<property name="" value=""></property>
+		<property name="" value=""></property>
+		<property name="" value=""></property>
+		<property name="" value=""></property>
+	</bean>
+	<bean className=""></bean>
+	<bean id="" className=""></bean>
+	<bean id="" className=""></bean>
+	<bean id="" className=""></bean>
+	
+	
+	<import resource="">asd</import>
+	<import resource=""></import>
+	<import resource=""></import>
+	<import resource=""></import>
+</beans>
+
