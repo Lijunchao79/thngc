@@ -1,0 +1,207 @@
+1.数据库 DataBase ,DB
+2.数据库管理系统DataBase Management System，DBMS
+3.打开服务
+services.msc;
+4.手动
+开启服务: net start mysql
+关闭服务: net stop mysql
+5.登录Mysql
+5.1 mysql -uroot -p
+5.2 mysql -u root -p 
+5.3 mysql -h127.0.0.1 -uroot -proot
+5.4 mysql --host=127.0.0.1 --user=root --password=root
+6.退出
+6.1 exit
+6.2 quit
+7.结构化查询语言(Structured Query Language),SQL
+规范;
+不同的数据库生产厂商都支持SQL语句，但都有特有内容
+8.分类
+8.1：DDL(Data Definition Language)
+8.2：DML(Data Manipulation Language)
+8.3：DCL(Data Control Language)
+8.4：DQL(Data Query Language)
+9.查看所有的数据库
+show databases;
+10.查看表
+show tables;
+11.使用数据库
+use databaseName
+12.建库
+create database [if not exists] 库名;
+13.删库
+drop database [if exists] 库名;
+14.查看建库语句
+show create database 库名;
+15.修改数据库的编码集
+alter database 库名 character set utf8;
+16.查看当前的数据库
+select database();
+=============================================>
+17.建表
+create table 表名(
+   字段名 类型(长度) [约束],
+   字段名 类型(长度) [约束],
+   ...
+);
+18.查看建表语句
+show create table 表名
+19.查看表结构
+desc 表名
+20.删表
+drop table [if exists] 表名
+=============================================>
+修改表结构格式
+21.修改表名
+alter table 表名  rename to 新表名
+22.修改编码集
+alter table 表名 character set 字符集
+23.添加一列
+alter table 表名 add 字段名   类型
+24.修改字段的类型
+alter table 表名 modify 字段名   新类型
+25.修改字段名
+alter table 表名 change 旧字段名  新字段名   类型
+26.删除列
+alter table 表名 drop 字段名;
+=============================================>
+27.Insert语句
+-- 向表中插入某些字段
+INSERT INTO 表 (字段1,字段2,字段3..) VALUES  (值1,值2,值3..); 
+--向表中插入所有字段,字段的顺序为创建表时的顺序
+INSERT INTO 表 VALUES (值1,值2,值3..);
+=============================================>
+28.Update语句
+--更新所有记录的指定字段
+UPDATE 表名 SET 字段名=值,字段名=值,...;
+--更新符号条件记录的指定字段
+UPDATE 表名 SET 字段名=值,字段名=值,... WHERE 条件;
+=============================================>
+29.DELETE删除语句
+DELETE from 表名 [WHERE 条件];
+=============================================>
+28.SELECT查询
+select [distinct] * | 列名,列名  from 表   WHERE 条件
+
+1.单表查询
+select * | 列名,列名  from 表
+2.别名：表，字段；AS,可省略
+SELECT p.pid AS '编号' FROM d_product AS p
+3.去重；distinct
+SELECT DISTINCT p.price FROM d_product p;
+4.条件查询
+SELECT * FROM d_product WHERE pid=1；
+5.查询结果是表达式（运算查询）：将所有商品的价格打九折进行显示.
+SELECT pid,pname,price*0.9 AS discount,price,category_id FROM d_product
+6. =
+7. != ;<> 
+8. >;<
+9. >=;<=
+10. betwwen...and 满足区间之内
+11.and 同时满足；or 满足任意一条
+12.模糊查询 like  
+  %:代表零个或多个任意字符;
+  _:代表一个任意字符
+13. is null;判断是否为空
+    is not null :不为空
+=============================================>
+#创建商品表：
+create table d_product(
+	pid int primary key,
+	pname varchar(20),
+	price double,
+	category_id varchar(32)
+);
+INSERT INTO `d_product` VALUES ('1', '苹果', '5000', 'c001');
+INSERT INTO `d_product` VALUES ('2', 'vivo', '3000', 'c001');
+INSERT INTO `d_product` VALUES ('3', '华为', '5000', 'c001');
+INSERT INTO `d_product` VALUES ('4', 'oppo', '1000', 'c001');
+INSERT INTO `d_product` VALUES ('5', '真维斯', '200', 'c002');
+INSERT INTO `d_product` VALUES ('6', 'only', '440', 'c002');
+INSERT INTO `d_product` VALUES ('7', '圣迪奥', '800', 'c002');
+INSERT INTO `d_product` VALUES ('8', 'vero moda', '800', 'c003');
+INSERT INTO `d_product` VALUES ('9', '相宜本草', '200', 'c003');
+INSERT INTO `d_product` VALUES ('10', '卫龙辣条', '5', NULL);
+INSERT INTO `d_product` VALUES ('11', '好想你枣', '56', NULL);
+INSERT INTO `d_product` VALUES ('12', '香飘飘奶茶', '3', NULL);
+INSERT INTO `d_product` VALUES ('13', '小浣熊干脆面', '1', NULL);
+
+-- 查询价格为800的商品
+SELECT * FROM d_product where price=800;
+
+-- 查询价格不是800的商品
+SELECT * FROM d_product where price!=800;
+SELECT * FROM d_product where price<>800;
+
+-- 查询价格大于800的商品
+SELECT * FROM d_product where price>800;
+
+-- 查询价格在800到2000之间的商品
+SELECT * FROM d_product where price>=800 and price<=2000;
+SELECT * FROM d_product where price BETWEEN 800 AND 2000;
+
+-- 查询价格800或者440的商品
+SELECT * FROM d_product WHERE price=800 OR price=440;
+SELECT * FROM d_product WHERE  price in(800,440)
+
+-- 查询所有含有'o'的商品；
+SELECT * FROM d_product WHERE pname LIKE '%o%';
+
+-- 查询所有含有'o'开头的商品；
+SELECT * FROM d_product WHERE pname LIKE 'o%';
+
+-- 查询第四个字母含有'o'的商品；
+SELECT * FROM d_product WHERE pname LIKE '___o%';
+
+-- 查询没有分类的商品
+SELECT * FROM d_product WHERE category_id IS NULL
+
+-- 查询分类的商品
+SELECT * FROM d_product WHERE category_id IS NOT NULL
+
+-- /*筛选出价格在800以上，同时包含o字符的商品id和名称、价格*/
+SELECT pid,pname,price FROM d_product WHERE price>800 and pname LIKE '%o%'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
