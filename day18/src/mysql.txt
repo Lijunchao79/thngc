@@ -1,0 +1,151 @@
+1.排序
+SELECT * FROM 表名 where 条件 ORDER BY 排序字段 ASC|DESC;
+	ASC 升序 (默认)
+	DESC 降序
+
+2.聚合函数
+2.1 count：统计指定列不为NULL的记录行数；
+=============================================>
+3.数学函数
+#四舍五入
+SELECT ROUND(1.55);
+#向上取整：不小于
+SELECT CEIL(1.2);
+#向下取整：不大于
+SELECT FLOOR(1.2);
+#截断
+SELECT TRUNCATE(1.436,1)
+#取模
+SELECT MOD(10,3)
+=============================================>
+4.日期函数
+#返回当前的系统时间
+SELECT NOW();
+#返回日期
+SELECT CURDATE();
+#返回时间
+SELECT CURTIME();
+#返回年份
+SELECT YEAR(NOW())
+# 返回月份
+SELECT MONTH(NOW())
+# 返回月份的名字
+SELECT MONTHNAME(NOW())
+=============================================>
+5.其他函数
+SELECT DATABASE();
+SELECT VERSION();
+SELECT USER();
+=============================================>
+6.分组
+SELECT 字段1,字段2… FROM 表名 GROUP BY分组字段 HAVING 分组条件;
+
+#/*按照价格分组*/
+SELECT * FROM d_product;
+SELECT * FROM d_product GROUP BY price
+
+#/*按照类别id分组  该类名的商品个数 平均价格 类别*/
+SELECT COUNT(*) '商品个数',AVG(price) '平均价格',MAX(price) '最大值',
+MIN(price) '最小值',category_id '类别' FROM d_product GROUP BY category_id
+
+# having
+SELECT COUNT(*) '商品个数',AVG(price) '平均价格',MAX(price) '最大值',
+MIN(price) '最小值',category_id '类别' FROM d_product GROUP BY category_id HAVING AVG(price)>=500
+
+
+#按照 非空类别id 分组
+SELECT  COUNT(*) '商品个数',AVG(price) '平均价格',MAX(price),category_id 
+FROM d_product WHERE category_id IS NOT NULL GROUP BY category_id HAVING AVG(price)>=500
+
+
+=============================================>
+7.添加主键
+alter table 表名 add primary key (字段名)
+删除主键约束
+alter table 表名 drop primary key
+修改 auto_increment
+alter table 编码 auto_increment
+
+1.delete from 表名
+2.truncate table 表名：会重置auto_increment
+
+=============================================>
+8.非空约束
+not null
+=============================================>
+9.
+PRIMARY KEY  = unique + not null;
+
+=============================================>
+10.
+唯一约束：unique
+
+alter table 表名 add unique (字段名)
+
+删除：
+ALTER TABLE Persons DROP INDEX 名称
+
+=============================================>
+
+CREATE TABLE departments (
+  department_id int(4) NOT NULL AUTO_INCREMENT COMMENT '部门编号',
+  department_name varchar(3) DEFAULT NULL COMMENT '部门名称',
+  manager_id int(6) DEFAULT NULL COMMENT '部门领导的员工编号',
+  location_id int(4) DEFAULT NULL COMMENT '位置编号',
+  PRIMARY KEY (department_id),
+  KEY loc_id_fk (location_id),
+  CONSTRAINT loc_id_fk FOREIGN KEY (location_id) REFERENCES locations (location_id)
+)
+
+=============================================>
+12.字符函数
+-- 1.LENGTH:获取参数值的字节个数
+SELECT LENGTH('jack');
+
+SELECT LENGTH('jack杰克肉丝');
+
+SHOW VARIABLES LIKE '%char%'
+
+-- 1. 两个操作数都是数值
+-- 2. 数值型的字符，转成数值；转换不成功，就是0
+-- 3.只要有一个是null ,null
+SELECT 10+9  
+SELECT '123'+10
+SELECT 'jack'+10
+SELECT null+10
+=============================================>
+-- 2.CONCAT():拼接字符串
+SELECT CONCAT('jack','-','rose')
+
+-- 3.upper():转大写
+SELECT UPPER('jack')
+
+-- 4.LOWER():转大写
+SELECT LOWER('JACK')
+
+-- 5.SUBSTR(str,pos,len):截取；返回指定索引后面的字符
+SELECT SUBSTR('jackrosejava',7,2)
+
+-- jack首字母大写，其余小写
+SELECT  CONCAT(UPPER(SUBSTR('jaCK',1,1)),LOWER(SUBSTR('jaCK',2))) AS '姓名'
+
+-- 6 INSTR(str,substr)：返回第一次出现的索引，找不到返回0
+SELECT INSTR('jackrosejavarose','rose')
+
+-- 7 TRIM([remstr FROM] str):去掉前后空格
+SELECT '   aaaaaa aaa    '
+SELECT TRIM('   aaaaaa aaa    ')
+
+-- 8.LPAD(str,len,padstr) : 左填充
+SELECT LPAD('apple',10,'*')
+
+-- 9.RPAD(str,len,padstr) : 右填充
+SELECT RPAD('apple',10,'*')
+
+-- 10. REPLACE():替换
+SELECT REPLACE('jackrosejavarose','rose','apple')
+
+=============================================>
+
+
+
